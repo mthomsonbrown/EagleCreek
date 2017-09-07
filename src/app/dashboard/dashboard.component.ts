@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  onHi() {
+    console.log("Clicked button!")
+  }
+
 }
