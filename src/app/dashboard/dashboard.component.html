@@ -2,4 +2,4 @@
   <h1>Today's Date: {{date | date:'d-M-yyyy'}}</h1>
   <button (click)="onHi()" md-button type="button">Work All Day [Test]</button>
 </div>
-<div class="test_rec"></div>
+<div [ngClass]="'test_rec'"></div>
