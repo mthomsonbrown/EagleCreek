@@ -1,6 +1,5 @@
 .test_rec {
   text-align: center;
-  line-height: 100px;
   margin:0 auto;
   width:500px;
   height:100px;
@@ -9,7 +8,6 @@
 
 .test_rec_lazy {
   text-align: center;
-  line-height: 100px;
   margin:0 auto;
   width:500px;
   height:100px;
