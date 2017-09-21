@@ -15,10 +15,8 @@ app.use(bodyParser.json());
 
 app.use('/api', api);
 
-app.get('*', (req, res) => {
+app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-app.listen(port, function() {
-  console.log("Server running on port " + port);
-})
+app.listen(port, () => { console.log('Server running on port ' + port) });

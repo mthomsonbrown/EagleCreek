@@ -1,15 +1,15 @@
 .test_rec {
-  text-align: center;
-  margin:0 auto;
-  width:500px;
-  height:100px;
   background:#d10026;
+  height:100px;
+  margin:0 auto;
+  text-align: center;
+  width:500px;
 }
 
 .test_rec_lazy {
-  text-align: center;
-  margin:0 auto;
-  width:500px;
-  height:100px;
   background:#42f46e;
+  height:100px;
+  margin:0 auto;
+  text-align: center;
+  width:500px;
 }

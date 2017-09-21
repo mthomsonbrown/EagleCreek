@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DailyEntryService {
 
-  private _get_url = "/api/daily_entries";
+  private _get_url = '/api/daily_entries';
 
   constructor(private _http: Http) {
 

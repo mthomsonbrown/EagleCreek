@@ -7,4 +7,7 @@ const dailyEntrySchema = new Schema({
   flavor_text: String
 });
 
-module.exports = mongoose.model('daily_entry', dailyEntrySchema, 'daily_entries');
+/** TODO: write a meaningful comment... */
+module.exports = mongoose.model(
+    'daily_entry', dailyEntrySchema, 'daily_entries'
+);
