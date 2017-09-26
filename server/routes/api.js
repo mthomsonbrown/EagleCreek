@@ -7,6 +7,11 @@ const mongo_creds = 'test_userr:pw_test_user';
 const mongo_uri = `ds135574.mlab.com:35574/eagle_creek_db`;
 const db = 'mongodb://' + mongo_creds + '@' + mongo_uri;
 
+
+// JWT stuff
+const secret = 'NotARealSecret';
+const jwt = require('jsonwebtoken');
+
 /** TODO: write a meaningful comment... */
 mongoose.Promise = global.Promise;
 
@@ -21,7 +26,7 @@ router.get('/daily_entries', function(req, res) {
     DailyEntry.find({})
     .exec(function(err, daily_entries) {
       if (err) {
-        console.error('Error retrieving videos: ' + err);
+        console.error('Error retrieving daily entries: ' + err);
       }
       else {
         res.json(daily_entries);
@@ -30,7 +35,6 @@ router.get('/daily_entries', function(req, res) {
 });
 
 router.post('/user', function(req, res) {
-    console.log('Posting a user');
     var user = new User();
     user.name = req.body.name;
     user.password = req.body.password;
@@ -44,6 +48,42 @@ router.post('/user', function(req, res) {
         res.json(user);
       }
     });
+});
+
+router.post('/authenticate', function(req, res) {
+  User.findOne({
+    name: req.body.name
+  }, function(err, user) {
+    if (err) throw err;
+
+    if (!user) {
+      res.json({
+        success: false, message: 'Authentication failed. User not found.'
+      });
+    } else if (user) {
+
+      // check if password matches
+      if (user.password != req.body.password) {
+        res.json({
+          success: false, message: 'Authentication failed. Wrong password.'
+        });
+      } else {
+
+        // if user is found and password is right
+        // create a token
+        var token = jwt.sign({user}, secret, {
+          expiresIn: 60 * 60 * 24 // expires in 24 hours
+        });
+
+        // return the information including token as JSON
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
+      }
+    }
+  });
 });
 
 router.get('/', function(req, res) {
