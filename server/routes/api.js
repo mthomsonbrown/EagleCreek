@@ -80,6 +80,10 @@ router.post('/user', function(req, res) {
   });
 });
 
+router.post('/register', function(req, res) {
+  res.sendStatus(501);
+});
+
 router.post('/authenticate', function(req, res) {
   User.findOne({
     name: req.body.name
