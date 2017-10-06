@@ -13,18 +13,20 @@ export class RegisterComponent implements OnInit {
 
   constructor(private http: HttpClient) {
     this.user = new User();
-    console.log('You\'er in the register component class!' + this.user);
+    this.user.name = 'Test Name';
+    console.log('You\'er in the register component class!' + this.user.name);
   }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    console.log('You submitted user: ' + this.user.name);
-    this.http.post('/api/register', JSON.stringify(this.user))
+  onSubmit(model: User) {
+    console.log('You submitted user: ' + model.name);
+    console.log('You submitted user: ' + model.email);
+    this.http.post('/api/user', model)
       .subscribe(
-        data => {
-          console.log('From post, content is: ' + data);
+        (user: User) => {
+          console.log('From post, User is: ' + model.name);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {

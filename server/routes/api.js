@@ -68,6 +68,7 @@ router.get('/daily_entries', verifyAuthToken, function(req, res) {
 router.post('/user', function(req, res) {
   var user = new User();
   user.name = req.body.name;
+  user.email = req.body.email;
   user.password = req.body.password;
   user.password_confirmation = req.body.password_confirmation;
   console.log('User is ' + req.body.name);
@@ -78,10 +79,6 @@ router.post('/user', function(req, res) {
       res.json(user);
     }
   });
-});
-
-router.post('/register', function(req, res) {
-  res.sendStatus(501);
 });
 
 router.post('/authenticate', function(req, res) {
