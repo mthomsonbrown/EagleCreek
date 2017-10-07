@@ -4,11 +4,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from './../user';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
   user: User;
 
   constructor(private http: HttpClient) {
@@ -19,10 +19,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(model: User) {
-    this.http.post('/api/user', model)
+    this.http.post('/api/authenticate', model)
       .subscribe(
-        (user: User) => {
-          console.log('From post, User is: ' + user.name);
+        (result: JSON) => {
+          if (result['success']) {
+            console.log('Token is: ' + result['token']);
+          } else {
+            console.log(result['message']);
+          }
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
@@ -35,4 +39,5 @@ export class RegisterComponent implements OnInit {
         }
       );
   }
+
 }
