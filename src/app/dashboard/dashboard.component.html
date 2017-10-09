@@ -1,5 +1,7 @@
-<div style="text-align:center">
-  <h1>Today's Date: {{date | date:'d-M-yyyy'}}</h1>
-  <button (click)="onHi()" type="button">Work All Day [Test]</button>
-</div>
-<div *ngIf="daily_entry" [ngClass]="daily_entry.worked_all_day ? 'test_rec' : 'test_rec_lazy'">{{ daily_entry.flavor_text }}</div>
+<mat-sidenav-container class="full-screen">
+  <div style="text-align:center">
+    <h1>Today's Date: {{date | date:'d-M-yyyy'}}</h1>
+    <button (click)="onHi()" type="button">Work All Day [Test]</button>
+  </div>
+  <div *ngIf="daily_entry" [ngClass]="daily_entry.worked_all_day ? 'test_rec' : 'test_rec_lazy'">{{ daily_entry.flavor_text }}</div>
+</mat-sidenav-container>

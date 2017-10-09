@@ -11,7 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule, MatToolbarModule, MatButtonModule } from '@angular/material';
+import {
+  MatSidenavModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,9 @@ import { MatSidenavModule, MatToolbarModule, MatButtonModule } from '@angular/ma
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

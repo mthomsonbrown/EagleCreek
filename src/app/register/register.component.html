@@ -1,31 +1,27 @@
-<div class="container">
+<mat-sidenav-container class="full-screen">
     <h1>Registration Form</h1>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name"
-          required
-          [(ngModel)]="user.name" name="name">
-      </div>
+    <form class="form-container" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      <mat-form-field>
+        <input matInput placeholder="Name" type="text" class="form-control"
+          id="name" required [(ngModel)]="user.name" name="name">
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" id="email"
-          [(ngModel)]="user.email" name="email">
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="Email" type="text" class="form-control"
+          id="email" required [(ngModel)]="user.email" name="email">
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="text" class="form-control" id="password"
-          [(ngModel)]="user.password" name="password">
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="text" class="form-control"
+          id="password" required [(ngModel)]="user.password" name="password">
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="password_confirmation">Password Confirmation</label>
-        <input type="text" class="form-control" id="password_confirmation">
-      </div>
+      <mat-form-field>
+        <input matInput placeholder="Password Confirmation" type="text"
+          required class="form-control" id="password_confirmation">
+      </mat-form-field>
 
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button mat-button type="submit" color="primary">Submit</button>
 
     </form>
-</div>
+</mat-sidenav-container>

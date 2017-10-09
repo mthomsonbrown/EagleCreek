@@ -1,20 +1,19 @@
-<div class="container">
+<mat-sidenav-container class="full-screen">
     <h1>Login Form</h1>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name"
+    <form class="form-container" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      <mat-form-field>
+        <input matInput placeholder="Name" type="text" id="name"
           required
           [(ngModel)]="user.name" name="name">
-      </div>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="text" class="form-control" id="password"
+      <mat-form-field>
+        <input matInput placeholder="Password" type="text" id="password"
+          required
           [(ngModel)]="user.password" name="password">
-      </div>
+      </mat-form-field>
 
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button mat-button type="submit" color="primary">Submit</button>
 
     </form>
-</div>
+</mat-sidenav-container>
