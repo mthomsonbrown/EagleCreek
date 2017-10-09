@@ -1,7 +1,17 @@
-<mat-sidenav-container class="full-screen">
+<mat-sidenav-container *ngIf="daily_entry; else banish" class="full-screen">
   <div style="text-align:center">
     <h1>Today's Date: {{date | date:'d-M-yyyy'}}</h1>
-    <button (click)="onHi()" type="button">Work All Day [Test]</button>
+    <button mat-raised-button (click)="onHi()" type="button">
+      Work All Day
+    </button>
   </div>
-  <div *ngIf="daily_entry" [ngClass]="daily_entry.worked_all_day ? 'test_rec' : 'test_rec_lazy'">{{ daily_entry.flavor_text }}</div>
+  <div *ngIf="daily_entry"
+    [ngClass]="daily_entry.worked_all_day ? 'test_rec' : 'test_rec_lazy'">
+      {{daily_entry.flavor_text}}
+  </div>
 </mat-sidenav-container>
+<ng-template #banish>
+  <mat-sidenav-container class="full-screen">
+    You're not logged in...
+  </mat-sidenav-container>
+</ng-template>
