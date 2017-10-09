@@ -1,8 +1,20 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <a routerLink="/register">
-    <button type="button">Dashboard [test]</button>
-  </a>
-</div>
+<mat-sidenav-container>
+  <mat-toolbar color="primary">
+    <span>{{title}}.</span>
+    <span class="fill-space"></span>
+    <a routerLink="/login">
+      <button mat-button color="accent">Login</button>
+    </a>
+    <a routerLink="/register">
+      <button mat-button color="accent">Sign Up</button>
+    </a>
+  </mat-toolbar>
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{title}}!
+    </h1>
+    <a routerLink="/register">
+      <button mat-raised-button color="primary">Dashboard [test]</button>
+    </a>
+  </div>
+</mat-sidenav-container>

@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$eagle-creek-primary: mat-palette($mat-indigo);
+$eagle-creek-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$eagle-creek-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$eagle-creek-theme: mat-light-theme($eagle-creek-primary, $eagle-creek-accent, $eagle-creek-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($eagle-creek-theme);
+
+// .mat-app-background {
+//   background-color: mat-palette($mat-indigo);
+// }
