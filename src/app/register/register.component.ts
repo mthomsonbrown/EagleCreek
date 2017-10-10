@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 import { User } from './../user';
 
@@ -10,8 +11,7 @@ import { User } from './../user';
 })
 export class RegisterComponent implements OnInit {
   user: User;
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.user = new User();
   }
 
@@ -21,8 +21,9 @@ export class RegisterComponent implements OnInit {
   onSubmit(model: User) {
     this.http.post('/api/user', model)
       .subscribe(
-        (user: User) => {
-          console.log('From post, User is: ' + user.name);
+        (result: JSON) => {
+          console.log('From register, token is: ' + result['token']);
+          this.router.navigate(['dashboard']);
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {

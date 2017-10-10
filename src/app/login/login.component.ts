@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {Router} from '@angular/router';
 
 import { User } from './../user';
 
@@ -11,7 +12,7 @@ import { User } from './../user';
 export class LoginComponent implements OnInit {
   user: User;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.user = new User();
   }
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
         (result: JSON) => {
           if (result['success']) {
             console.log('Token is: ' + result['token']);
+            this.router.navigate(['dashboard']);
           } else {
             console.log(result['message']);
           }
@@ -34,7 +36,8 @@ export class LoginComponent implements OnInit {
             console.log('An error occurred:', err.error.message);
           } else {
             // Backend Response
-            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            console.log('Backend returned code ${err.status},' +
+                        ' body was: ${err.error}');
           }
         }
       );

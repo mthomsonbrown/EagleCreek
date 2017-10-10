@@ -15,7 +15,15 @@ const jwt = require('jsonwebtoken');
 /** TODO: write a meaningful comment... */
 mongoose.Promise = global.Promise;
 
-verifyAuthToken = function(req, res, next) {
+function generateAuthToken(user) {
+  return jwt.sign({
+    user
+  }, secret, {
+    expiresIn: 60 * 60 * 24 // expires in 24 hours
+  });
+}
+
+function verifyAuthToken(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.headers['x-access-token'];
 
@@ -45,7 +53,7 @@ verifyAuthToken = function(req, res, next) {
       message: 'No token provided.'
     });
   }
-};
+}
 
 mongoose.connect(db, function(err) {
   if (err) {
@@ -76,7 +84,12 @@ router.post('/user', function(req, res) {
     if (err) {
       console.log('Error saving user: ' + err);
     } else {
-      res.json(user);
+      var token = generateAuthToken(user);
+      res.json({
+        success: true,
+        message: 'Enjoy your token!',
+        token: token
+      });
     }
   });
 });
@@ -104,11 +117,7 @@ router.post('/authenticate', function(req, res) {
 
         // if user is found and password is right
         // create a token
-        var token = jwt.sign({
-          user
-        }, secret, {
-          expiresIn: 60 * 60 * 24 // expires in 24 hours
-        });
+        var token = generateAuthToken(user);
 
         // return the information including token as JSON
         res.json({
