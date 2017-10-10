@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
         (result: JSON) => {
           if (result['success']) {
             console.log('Token is: ' + result['token']);
+            localStorage.setItem(
+              'currentUser', JSON.stringify({ token: result['token'] })
+            );
             this.router.navigate(['dashboard']);
           } else {
             console.log(result['message']);

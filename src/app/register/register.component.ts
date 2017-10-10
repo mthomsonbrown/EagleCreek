@@ -22,7 +22,9 @@ export class RegisterComponent implements OnInit {
     this.http.post('/api/user', model)
       .subscribe(
         (result: JSON) => {
-          console.log('From register, token is: ' + result['token']);
+          localStorage.setItem(
+            'currentUser', JSON.stringify({ token: result['token'] })
+          );
           this.router.navigate(['dashboard']);
         },
         (err: HttpErrorResponse) => {
@@ -31,7 +33,7 @@ export class RegisterComponent implements OnInit {
             console.log('An error occurred:', err.error.message);
           } else {
             // Backend Response
-            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+            console.log(`Backend threw error: ${err.error}`);
           }
         }
       );

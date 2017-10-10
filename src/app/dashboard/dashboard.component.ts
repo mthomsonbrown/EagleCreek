@@ -13,10 +13,10 @@ export class DashboardComponent implements OnInit {
 
   daily_entry: DailyEntry;
 
-  constructor(private _daily_entry_service: DailyEntryService) { }
+  constructor(private daily_entry_service: DailyEntryService) { }
 
   ngOnInit() {
-    this._daily_entry_service.get_daily_entry()
+    this.daily_entry_service.get_daily_entry()
     .subscribe(entry => { this.daily_entry = entry[0]; });
   }
 

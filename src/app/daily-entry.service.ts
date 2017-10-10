@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+// import { Http, Response, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DailyEntryService {
 
-  private _get_url = '/api/daily_entries';
+  private get_url = '/api/daily_entries';
 
-  constructor(private _http: Http) {
+  constructor(private http: HttpClient) {
 
   }
 
   get_daily_entry() {
-    return this._http.get(this._get_url)
-      .map((response: Response) => response.json());
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    return this.http.get(
+      this.get_url,
+      {
+        headers: new HttpHeaders().set('x-access-token', currentUser.token)
+      });
   }
-
 }
