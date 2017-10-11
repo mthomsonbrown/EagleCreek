@@ -1,8 +1,15 @@
+/**
+ * @fileoverview Displays a login view for the user and authenticates them
+ * through the backend.  If the login was successful, a token is saved to
+ * localStorage.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {Router} from '@angular/router';
 
 import { User } from './../user';
+
 
 @Component({
   selector: 'app-login',
@@ -16,9 +23,16 @@ export class LoginComponent implements OnInit {
     this.user = new User();
   }
 
+
   ngOnInit() {
   }
 
+
+  /**
+   * onSubmit - Handles user submission on the frontend.
+   *
+   * @param  {User} model: User The user object as filled in from the view.
+   */
   onSubmit(model: User) {
     this.http.post('/api/authenticate', model)
       .subscribe(

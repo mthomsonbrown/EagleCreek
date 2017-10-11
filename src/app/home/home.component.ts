@@ -1,4 +1,10 @@
+/**
+ * @fileoverview Landing page for unauthenticated users.  Should present
+ * general information about the application and options to sign up or sign in.
+ */
+
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',

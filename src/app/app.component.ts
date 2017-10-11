@@ -1,3 +1,7 @@
+/**
+ * Default Angular resource.  Can I delete?
+ */
+
 import { Component } from '@angular/core';
 
 @Component({

@@ -1,3 +1,7 @@
+/**
+ * @fileoverview All of the API routes exposed by Express.
+ */
+
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -7,14 +11,25 @@ const mongo_creds = 'test_userr:pw_test_user';
 const mongo_uri = `ds135574.mlab.com:35574/eagle_creek_db`;
 const db = 'mongodb://' + mongo_creds + '@' + mongo_uri;
 
-
 // JWT stuff
 const secret = 'NotARealSecret';
 const jwt = require('jsonwebtoken');
 
-/** TODO: write a meaningful comment... */
+
+/**
+ * Mongoose mpromise is deprecated, so I'm supposed to plug in my own
+ * promise library.
+ */
 mongoose.Promise = global.Promise;
 
+
+/**
+ * generateAuthToken - Given a valid user object, generate a jwt token
+ *    for that user.
+ *
+ * @param  {User} user Valid user object returned from the database
+ * @return {token}      A token returned by jwt TODO: what is the type?
+ */
 function generateAuthToken(user) {
   return jwt.sign({
     user
@@ -23,6 +38,18 @@ function generateAuthToken(user) {
   });
 }
 
+
+/**
+ * verifyAuthToken - Middleware that can be applied to any API request to
+ *    authenticate a token passed in either the request body or header.
+ *
+ * @param  {Request} req   The request
+ * @param  {Result} res    The result passed back by this function if
+ *    authentication failed.
+ * @param  {Function} next Function called to pass computation to the next.
+ *    middleware or the last handler.
+ * @return {Result}        Value returned if an error occurred
+ */
 function verifyAuthToken(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.headers['x-access-token'];
@@ -55,12 +82,28 @@ function verifyAuthToken(req, res, next) {
   }
 }
 
+
+/**
+ * mongoose.connect - Associates the database with Mongoose.
+ *
+ * @param  {String} db      URI for the database to connect to.
+ * @param  {Function} func  Callback to handle errors connecting to db.
+ */
 mongoose.connect(db, function(err) {
   if (err) {
     console.error('Error! ' + err);
   }
 });
 
+
+/**
+ * TODO: API docs
+ * GET /daily_entries
+ *
+ * Current stub test data to render for an authenticated user.
+ *
+ *  @return {String} String representing a daily entry
+ */
 router.get('/daily_entries', verifyAuthToken, function(req, res) {
   console.log('Get request for daily entries.');
   DailyEntry.find({})
@@ -73,6 +116,16 @@ router.get('/daily_entries', verifyAuthToken, function(req, res) {
     });
 });
 
+
+/**
+* TODO: API docs
+* POST /user
+*
+* Adds a User object to the database.  The user object should be an element of
+* the request.
+*
+* @return {String} A token to identify the user
+*/
 router.post('/user', function(req, res) {
   var user = new User();
   user.name = req.body.name;
@@ -94,6 +147,16 @@ router.post('/user', function(req, res) {
   });
 });
 
+
+/**
+ * TODO: API docs
+ * POST /authenticate
+ *
+ * Used for login.  Takes identifying data from the body object to create a
+ * request to the database.
+ *
+ * @return {String} A token to identify the user
+ */
 router.post('/authenticate', function(req, res) {
   User.findOne({
     name: req.body.name
@@ -130,9 +193,18 @@ router.post('/authenticate', function(req, res) {
   });
 });
 
+
+/**
+ * TODO: API docs
+ * GET /
+ *
+ * Default path.  This should never be rendered.
+ */
 router.get('/', function(req, res) {
   res.send('api works');
 });
 
-/** TODO: write a meaningful comment... */
+/**
+ * Exports the router object.
+ */
 module.exports = router;

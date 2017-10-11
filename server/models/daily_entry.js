@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Schema for a daily entry.
+ */
+
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -7,7 +11,8 @@ const dailyEntrySchema = new Schema({
   flavor_text: String
 });
 
-/** TODO: write a meaningful comment... */
+
+/** Export model. */
 module.exports = mongoose.model(
     'daily_entry', dailyEntrySchema, 'daily_entries'
 );

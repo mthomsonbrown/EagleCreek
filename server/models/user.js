@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Schema for a user.
+ */
+
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -9,7 +13,7 @@ const userSchema = new Schema({
   password_confirmation: String
 });
 
-/** TODO: write a meaningful comment... */
+/** Export model. */
 module.exports = mongoose.model(
     'user', userSchema, 'users'
 );
