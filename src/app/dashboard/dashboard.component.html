@@ -1,4 +1,4 @@
-<mat-sidenav-container *ngIf="daily_entry; else banish" class="full-screen">
+<mat-sidenav-container *ngIf="currentUser; else banish" class="full-screen">
   <div style="text-align:center">
     <h1>Today's Date: {{date | date:'d-M-yyyy'}}</h1>
     <button mat-raised-button (click)="onHi()" type="button">
