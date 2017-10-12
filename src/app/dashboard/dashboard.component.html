@@ -1,6 +1,7 @@
 <mat-sidenav-container *ngIf="currentUser; else banish" class="full-screen">
   <div style="text-align:center">
-    <h1>Today's Date: {{date | date:'d-M-yyyy'}}</h1>
+    <h1>Welcome {{username}}!</h1>
+    <h2>Today's Date: {{date | date:'d-M-yyyy'}}</h2>
     <button mat-raised-button (click)="onHi()" type="button">
       Work All Day
     </button>

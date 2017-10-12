@@ -34,7 +34,8 @@ function generateAuthToken(user) {
   return jwt.sign({
     user
   }, secret, {
-    expiresIn: 60 * 60 * 24 // expires in 24 hours
+    // expiresIn: 60 * 60 * 24 // expires in 24 hours
+    expiresIn: 60 // expires in 1 minute
   });
 }
 

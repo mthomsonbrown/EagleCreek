@@ -4,8 +4,8 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { DailyEntry } from './../daily-entry';
-import { DailyEntryService } from './../daily-entry.service';
+import { DailyEntry } from './../models/daily-entry';
+import { DailyEntryService } from './../services/daily-entry.service';
 
 
 @Component({
@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   daily_entry: DailyEntry;
   currentUser: Boolean;
+  username: String;
 
   constructor(private daily_entry_service: DailyEntryService) {
     this.currentUser = this.hasCurrentUser();
