@@ -4,8 +4,9 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { DailyEntry } from './../models/daily-entry';
-import { DailyEntryService } from './../services/daily-entry.service';
+import { DailyEntry } from './../../models/daily-entry';
+// import { DailyEntryService } from './../services/daily-entry.service';
+import { DailyEntryService } from './../../services/daily-entry.service';
 
 
 @Component({
